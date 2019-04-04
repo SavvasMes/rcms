@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header" >Page List</div>
+  <div class="card-body" >
+
+    <table class="table table-hover table-sm">
+      <thead>
+        <th>Tittle</th>
+        <th>Draft</th>
+        <th></th>
+      </thead>
+      <tbody>
+      <% @pages.each do |p| %>
+        <tr>
+          <td><%= p.title %></td>
+          <td><%= p.draft %></td>
+          <td><%= link_to 'Edit', pages_edit_path(id: p.id), class: 'btn btn-warning' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+
+    </table>
+  </div>
+
+</div>

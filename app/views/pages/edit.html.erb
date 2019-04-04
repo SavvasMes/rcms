@@ -1,0 +1,22 @@
+<% if @page.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @page.errors.full_messages.each do |error| %>
+      <li>
+        <%=error %>
+      </li>
+      <% end %>
+    </ul>
+    <%end %>
+  </div>
+
+
+<div class="card">
+  <div class="card-header"><%= @page.new_record? ? 'New' : 'Edit' %> Page</div>
+  <div class="card-body">
+    <%=simple_form_for @page, url: pages_create_path do |f| %>
+      <%= f.input :title %>
+      <%= f.button :submit, class: 'btn-danger' %>
+    <% end %>
+  </div>
+</div>
