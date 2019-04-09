@@ -3,19 +3,7 @@ class PagesController < ApplicationController
     @title = 'home Page'
   end
 
-  def about
-    @title = 'About Page'
-
-  end
-
-  def contact
-    @title = 'Contact Page'
-
-  end
-
-  def send_contact
     render json: params
-  end
 
   def index
     @pages = Page.all
@@ -24,26 +12,48 @@ class PagesController < ApplicationController
   def new
     @page = Page.new
     render :edit
-
   end
 
   def create
     @page = Page.new(page_params)
 
     if @page.save
-      redirect_to action: :index
+      flash[:notice] = "Page created <b>successfully!</b>"
+      redirect_to pages_path
     else
       render :edit
     end
+  end
+
+  def show
+    @page = Page.find params[:id]
   end
 
   def edit
     @page = Page.find params[:id]
   end
 
+  def update
+    @page = Page.find params[:id]
+
+    if @page.update_attributes page_params
+      flash[:notice] = "Page updated <b>successfully!</b>"
+      redirect_to pages_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @page = Page.find params[:id]
+     @page.destroy
+    flash.now[:notice] = "Page deleted <b>successfully!</b>"
+    redirect_to pages_path
+  end
+
   private
   def page_params
-    params.require(:page).permit(:title)
+    params.require(:page).permit(:title, :position, :menu, :draft, :home_page, :content, :meta_title, :meta_keyword, :meta_description)
   end
 
 

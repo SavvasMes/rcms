@@ -1,3 +1,4 @@
+<%= link_to 'New Page', new_page_path, class: 'btn btn-primary' %>
 <div class="card">
   <div class="card-header" >Page List</div>
   <div class="card-body" >
@@ -5,15 +6,19 @@
     <table class="table table-hover table-sm">
       <thead>
         <th>Tittle</th>
+        <th>Homepage</th>
         <th>Draft</th>
-        <th></th>
+      <th></th>
       </thead>
       <tbody>
       <% @pages.each do |p| %>
         <tr>
-          <td><%= p.title %></td>
-          <td><%= p.draft %></td>
-          <td><%= link_to 'Edit', pages_edit_path(id: p.id), class: 'btn btn-warning' %></td>
+          <td><%= link_to p.title, p %></td>
+          <td><%= '&#9989;'.html_safe if p.home_page %></td>
+          <td><%= '&#9989;'.html_safe if p.draft %></td>
+          <td><%= link_to 'Edit', edit_page_path(p), class: 'btn btn-warning' %>
+          <%= link_to 'Delete', p, method: :delete, class: 'btn btn-danger', data:{confirm: 'Are you sure you want to delete?'} %>
+          </td>
         </tr>
       <% end %>
       </tbody>
