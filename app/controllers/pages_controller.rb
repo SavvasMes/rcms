@@ -3,7 +3,6 @@ class PagesController < ApplicationController
     @title = 'home Page'
   end
 
-    render json: params
 
   def index
     @pages = Page.all
