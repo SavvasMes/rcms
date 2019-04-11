@@ -1,11 +1,12 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, except: [:home, :show]
   def home
     @title = 'home Page'
   end
 
 
   def index
-    @pages = Page.all
+    @pages = Page.page(params[:page])
   end
 
   def new
@@ -26,6 +27,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find params[:id]
+    render layout:'application'
   end
 
   def edit

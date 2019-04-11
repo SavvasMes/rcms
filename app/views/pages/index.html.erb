@@ -6,18 +6,18 @@
     <table class="table table-hover table-sm">
       <thead>
         <th>Tittle</th>
-        <th>Homepage</th>
-        <th>Draft</th>
+        <th class="text-center">Homepage</th>
+        <th class="text-center">Draft</th>
       <th></th>
       </thead>
       <tbody>
       <% @pages.each do |p| %>
         <tr>
           <td><%= link_to p.title, p %></td>
-          <td><%= '&#9989;'.html_safe if p.home_page %></td>
-          <td><%= '&#9989;'.html_safe if p.draft %></td>
-          <td><%= link_to 'Edit', edit_page_path(p), class: 'btn btn-warning' %>
-          <%= link_to 'Delete', p, method: :delete, class: 'btn btn-danger', data:{confirm: 'Are you sure you want to delete?'} %>
+          <td class="text-center"><%= '&#9989;'.html_safe if p.home_page %></td>
+          <td class="text-center"><%= '&#9989;'.html_safe if p.draft %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_page_path(p), class: 'btn btn-warning ' %>
+          <%= link_to 'Delete', p, method: :delete, class: 'btn btn-danger ', data:{confirm: 'Are you sure you want to delete?'} %>
           </td>
         </tr>
       <% end %>
@@ -25,5 +25,9 @@
 
     </table>
   </div>
-
+<div class="card-footer text-center">
+<% if @pages.total_pages > 1 %>
+    <%= paginate @pages %>
+    <% end %>
+</div>
 </div>

@@ -5,6 +5,8 @@ class Page < ApplicationRecord
 
   validate :validate_homepages_draft
 
+  default_scope {order(:position)}
+  scope :active, lambda{where(draft: false)}
 
   private
   def validate_homepages_draft

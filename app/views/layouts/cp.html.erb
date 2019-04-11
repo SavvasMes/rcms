@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Control Panel</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'cp', media: 'all' %>
+
+</head>
+
+<body class="<%=controller_name %> <%action_name %>">
+<%= render 'layouts/partials/cp/header' %>
+
+<div class="container">
+  <% if notice %>
+    <div class="alert alert-success">
+      <%=notice.html_safe %>
+    </div>
+  <% elsif alert %>
+    <div class="alert alert-warning">
+      <%=alert.html_safe %>
+    </div>
+  <% end %>
+  <%= yield %>
+</div>
+
+<%= render 'layouts/partials/development' %>
+</body>
+
+<%= javascript_include_tag 'cp' %>
+</html>
