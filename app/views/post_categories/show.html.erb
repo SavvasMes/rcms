@@ -1,0 +1,10 @@
+<h1><%= @post_category.tittle.html_safe %></h1>
+<div><% @posts.each do |p|%>
+  <div class="card mb-3">
+    <div class="card-header"><%= link_to p.title, p %></div>
+    <div class="card-body"><%= p.content.truncate 5 %></div>
+    <div class="card-footer"><%= link_to "Read more..", p %></div>
+  </div>
+  <%end %>
+</div>
+

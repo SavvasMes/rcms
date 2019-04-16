@@ -1,0 +1,36 @@
+<%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+<div class="card">
+  <div class="card-header" >Posts List</div>
+  <div class="card-body" >
+
+    <table class="table table-hover table-sm">
+      <thead>
+        <th>Tittle</th>
+        <th class="">Category</th>
+        <th class="">Content</th>
+
+
+      <th></th>
+      </thead>
+      <tbody>
+      <% @post.each do |p| %>
+        <tr>
+          <td><%= link_to p.title, p %></td>
+          <td><%= p.post_category.tittle %></td>
+          <td><%= p.content %></td>
+
+          <td class="text-right"><%= link_to 'Edit', edit_post_path(p), class: 'btn btn-warning ' %>
+          <%= link_to 'Delete', p, method: :delete, class: 'btn btn-danger ', data:{confirm: 'Are you sure you want to delete?'} %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+
+    </table>
+  </div>
+<div class="card-footer text-center">
+<% if @post.total_pages > 1 %>
+    <%= paginate @post %>
+    <% end %>
+</div>
+</div>

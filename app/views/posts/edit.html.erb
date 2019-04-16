@@ -1,0 +1,25 @@
+<% if @post.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @post.errors.full_messages.each do |error| %>
+      <li>
+        <%=error %>
+      </li>
+      <% end %>
+    </ul>
+    <%end %>
+  </div>
+
+
+<div class="card">
+  <div class="card-header"><%= @post.new_record? ? 'New' : 'Edit' %> Post</div>
+  <div class="card-body">
+    <%=simple_form_for @post, html: {multipart: true} do |f| %>
+      <%= f.input :title %>
+      <%= f.association :post_category, label_method: lambda{|p| "#{p.id}-#{p.tittle}"}, prompt: "Choose Category" %>
+      <%= f.input :image, as: :file %>
+      <%= f.input :content %>
+      <%= f.button :submit, "Save", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

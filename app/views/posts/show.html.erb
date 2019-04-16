@@ -1,0 +1,6 @@
+<h1><%= @post.title.html_safe %></h1>
+<div>
+  <img src="<%= url_for @post.image %>">
+  <%#= image_tag @post.image %>
+  <%= @post.content.html_safe %>
+</div>

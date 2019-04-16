@@ -1,0 +1,33 @@
+<%= link_to 'New Post Category', new_post_category_path, class: 'btn btn-primary' %>
+<div class="card">
+  <div class="card-header" >Post Category List</div>
+  <div class="card-body" >
+
+    <table class="table table-hover table-sm">
+      <thead>
+        <th>Tittle</th>
+        <th class="text-center">Position</th>
+        <th class="text-center">Active</th>
+      <th></th>
+      </thead>
+      <tbody>
+      <% @post_categories.each do |p| %>
+        <tr>
+          <td><%= link_to p.tittle, p %></td>
+          <td class="text-center"><%= p.position %></td>
+          <td class="text-center"><%= '&#9989;'.html_safe if p.active %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_post_category_path(p), class: 'btn btn-warning ' %>
+          <%= link_to 'Delete', p, method: :delete, class: 'btn btn-danger ', data:{confirm: 'Are you sure you want to delete?'} %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+
+    </table>
+  </div>
+<div class="card-footer text-center">
+<% if @post_categories.total_pages > 1 %>
+    <%= paginate @post_categories %>
+    <% end %>
+</div>
+</div>
